@@ -1,7 +1,8 @@
 """
 Ascii art 
 """
-
+import sys
+sys.setrecursionlimit(1100)
 
 #### Fonctions secondaires
 
