@@ -1,11 +1,13 @@
-#### Imports et définition des variables globales
+"""
+Ascii art 
+"""
 
 
 #### Fonctions secondaires
 
 
 def artcode_i(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme itératif
+    """Ascii art algorithme itératif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -13,19 +15,20 @@ def artcode_i(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    
-    # votre code ici
-    l = []
-    i = 1
-    while(s[i]==s[0]):
-        i+=1
-    ev = (s[0],i)
-    l.append(ev)
-    return l.append(artcode_i(s[i:]))
+    o = [1]
+    c = [s[0]]
+    n = len(s)
+    for k in range(1,n) :
+        if s[k] == s[k-1] :
+            o[-1]+=1
+        else :
+            c.append(s[k])
+            o.append(1)
+    return list(zip(c,o))
 
 
 def artcode_r(s):
-    """retourne la liste de tuples encodant une chaîne de caractères passée en argument selon un algorithme récursif
+    """ascii art algorithme récursif
 
     Args:
         s (str): la chaîne de caractères à encoder
@@ -33,26 +36,24 @@ def artcode_r(s):
     Returns:
         list: la liste des tuples (caractère, nombre d'occurences)
     """
-    
-    # votre code ici
-    l = []
-    i = 0
-    while (s[i]==s[0]):
-        i+=1
-    ev = (s[0],i)
-    l.append(ev)
-    return l.append(artcode_i(s[i:]))
+    n=len(s)
     # cas de base
+    if n == 0 :
+        return []
     # recherche nombre de caractères identiques au premier
+    i = 1
+    while i<n and s[i] == s[0]:
+        i+=1
+    tup = (s[0],i)
     # appel récursif
-
-    return []
-    
+    return [tup] + artcode_r(s[i:])
 
 #### Fonction principale
 
-
 def main():
+    """
+    Fonction maingit
+    """
     print(artcode_i('MMMMaaacXolloMM'))
     print(artcode_r('MMMMaaacXolloMM'))
 
